@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import Header from './Header';
+import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Checkout from "./Checkout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // BEM 
+    <Router>
+      <div className="app">
+
+      {/* RENDER THE HEADER REGARDLESS OF WHAT PAGE WE ARE ON */}
+      <Header />
+
+        <Switch> 
+
+          {/* CHECKOUT PAGE ROUTE */}
+          <Route path="/checkout">
+            <Checkout />
+          </Route>
+
+          {/* HOME PAGE ROUTE (default) Keep default at bottom so it can be listened to */}
+          <Route path="/">
+            <Home />
+          </Route>
+
+        </Switch>
+
+      </div>
+    </Router>
   );
 }
 
